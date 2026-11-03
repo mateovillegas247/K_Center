@@ -1378,208 +1378,156 @@
     <!-- FUNCIONALIDAD DEL CARRITO -->
 
     <script>
-        "use strict";
 
-        let carrito = [];
+"use strict";
 
-        const formatoPrecio = new Intl.NumberFormat("es-BO", {
-            maximumFractionDigits: 0
-        });
+let carrito = [];
 
-        function precioBolivianos(precio) {
-            return formatoPrecio.format(precio);
-        }
+const formatoPrecio = new Intl.NumberFormat("es-BO", {
+    maximumFractionDigits: 0
+});
 
-        function agregarCarrito(nombre, precio) {
-            carrito.push({
-                id: Date.now() + Math.random(),
-                nombre: nombre,
-                precio: precio
-            });
+function precioBolivianos(precio) {
+    return formatoPrecio.format(precio);
+}
 
-            actualizarCarrito();
+function agregarCarrito(nombre, precio) {
+    carrito.push({
+        id: Date.now() + Math.random(),
+        nombre: nombre,
+        precio: precio
+    });
 
-            const boton = document.getElementById("btnCarrito");
+    actualizarCarrito();
+}
 
-            boton.setAttribute(
-                "aria-label",
-                "Abrir carrito con " + carrito.length + " productos"
-            );
+function actualizarCarrito() {
+    const lista = document.getElementById("listaCarrito");
+    const totalHTML = document.getElementById("total");
+    const contador = document.getElementById("contadorCarrito");
 
-            boton.title = nombre + " agregado al carrito";
-        }
-
-        function actualizarCarrito() {
-            const lista = document.getElementById("listaCarrito");
-            const totalHTML = document.getElementById("total");
-            const contador = document.getElementById("contadorCarrito");
-
-            lista.replaceChildren();
-
-            if (carrito.length === 0) {
-                const vacio = document.createElement("li");
-                vacio.className = "carrito-vacio";
-                vacio.textContent = "Tu carrito está vacío.";
-                lista.appendChild(vacio);
-            }
-
-            carrito.forEach(function(producto) {
-                const item = document.createElement("li");
-                const contenido = document.createElement("div");
-                const nombre = document.createElement("span");
-                const precio = document.createElement("span");
-                const eliminar = document.createElement("button");
-                const detalles = document.createElement("div");
-
-                contenido.className = "item-carrito";
-                nombre.className = "item-nombre";
-                nombre.textContent = producto.nombre;
-
-                precio.className = "item-precio";
-                precio.textContent =
-                    "Bs " + precioBolivianos(producto.precio);
-
-                eliminar.className = "eliminar";
-                eliminar.type = "button";
-                eliminar.textContent = "Quitar";
-                eliminar.setAttribute(
-                    "aria-label",
-                    "Eliminar " + producto.nombre
-                );
-
-                eliminar.addEventListener("click", function() {
-                    eliminarProducto(producto.id);
-                });
-
-                detalles.append(nombre, precio);
-                contenido.append(detalles, eliminar);
-                item.appendChild(contenido);
-                lista.appendChild(item);
-            });
-
-            const total = carrito.reduce(function(suma, producto) {
-                return suma + producto.precio;
-            }, 0);
-
-            totalHTML.textContent = precioBolivianos(total);
-            contador.textContent = carrito.length;
-        }
-
-        function eliminarProducto(id) {
-            carrito = carrito.filter(function(producto) {
-                return producto.id !== id;
-            });
-
-            actualizarCarrito();
-        }
-
-        function mostrarCarrito(forzarEstado) {
-            const elemento = document.getElementById("carrito");
-            const boton = document.getElementById("btnCarrito");
-
-            const mostrar = typeof forzarEstado === "boolean"
-                ? forzarEstado
-                : !elemento.classList.contains("activo");
-
-            elemento.classList.toggle("activo", mostrar);
-            elemento.setAttribute("aria-hidden", String(!mostrar));
-            boton.setAttribute("aria-expanded", String(mostrar));
-        }
-
-        function comprar() {
+    lista.replaceChildren();
 
     if (carrito.length === 0) {
-        alert("Tu carrito está vacío. Agrega productos antes de continuar.");
+        const vacio = document.createElement("li");
+        vacio.className = "carrito-vacio";
+        vacio.textContent = "Tu carrito está vacío.";
+        lista.appendChild(vacio);
+    }
+
+    carrito.forEach(function(producto) {
+        const item = document.createElement("li");
+        const contenido = document.createElement("div");
+        const detalles = document.createElement("div");
+        const nombre = document.createElement("span");
+        const precio = document.createElement("span");
+        const eliminar = document.createElement("button");
+
+        contenido.className = "item-carrito";
+        nombre.className = "item-nombre";
+        nombre.textContent = producto.nombre;
+
+        precio.className = "item-precio";
+        precio.textContent = "Bs " + precioBolivianos(producto.precio);
+
+        eliminar.className = "eliminar";
+        eliminar.type = "button";
+        eliminar.textContent = "Quitar";
+
+        eliminar.addEventListener("click", function() {
+            eliminarProducto(producto.id);
+        });
+
+        detalles.append(nombre, precio);
+        contenido.append(detalles, eliminar);
+        item.appendChild(contenido);
+        lista.appendChild(item);
+    });
+
+    const total = carrito.reduce(function(suma, producto) {
+        return suma + producto.precio;
+    }, 0);
+
+    totalHTML.textContent = precioBolivianos(total);
+    contador.textContent = carrito.length;
+}
+
+function eliminarProducto(id) {
+    carrito = carrito.filter(function(producto) {
+        return producto.id !== id;
+    });
+
+    actualizarCarrito();
+}
+
+function mostrarCarrito(forzarEstado) {
+    const elemento = document.getElementById("carrito");
+    const boton = document.getElementById("btnCarrito");
+
+    const mostrar = typeof forzarEstado === "boolean"
+        ? forzarEstado
+        : !elemento.classList.contains("activo");
+
+    elemento.classList.toggle("activo", mostrar);
+    elemento.setAttribute("aria-hidden", String(!mostrar));
+    boton.setAttribute("aria-expanded", String(mostrar));
+}
+
+function comprar() {
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
         return;
     }
 
-    // Número de WhatsApp de K Center
     const numeroWhatsApp = "59173655491";
 
-    // Agrupar productos repetidos
-    const productosAgrupados = {};
+    let total = 0;
+    let detalle = "";
+
+    const agrupados = {};
 
     carrito.forEach(function(producto) {
-
-        if (!productosAgrupados[producto.nombre]) {
-            productosAgrupados[producto.nombre] = {
+        if (!agrupados[producto.nombre]) {
+            agrupados[producto.nombre] = {
                 cantidad: 0,
                 precio: producto.precio
             };
         }
 
-        productosAgrupados[producto.nombre].cantidad++;
+        agrupados[producto.nombre].cantidad++;
+        total += producto.precio;
     });
 
-    // Calcular el total
-    const total = carrito.reduce(function(suma, producto) {
-        return suma + producto.precio;
-    }, 0);
-
-    // Crear el detalle del pedido
-    let detalle = "";
-
-    Object.keys(productosAgrupados).forEach(function(nombre) {
-
-        const producto = productosAgrupados[nombre];
-
-        const subtotal = producto.cantidad * producto.precio;
+    Object.keys(agrupados).forEach(function(nombre) {
+        const producto = agrupados[nombre];
 
         detalle +=
             "\n📦 " + nombre +
             "\nCantidad: " + producto.cantidad +
-            "\nPrecio unitario: Bs " +
-            precioBolivianos(producto.precio) +
             "\nSubtotal: Bs " +
-            precioBolivianos(subtotal) +
+            precioBolivianos(producto.cantidad * producto.precio) +
             "\n";
     });
 
-    // Mensaje automático para WhatsApp
     const mensaje =
-        "🟡 *K CENTER - NUEVO PEDIDO* 🟡\n\n" +
-        "¡Hola! Quiero realizar una compra.\n\n" +
-        "🛒 *DETALLE DE MI PEDIDO*\n" +
-        "━━━━━━━━━━━━━━━━━━\n" +
+        "🟡 K CENTER - NUEVO PEDIDO 🟡\n\n" +
+        "Hola, quiero realizar una compra.\n" +
         detalle +
-        "━━━━━━━━━━━━━━━━━━\n" +
-        "💰 *TOTAL A PAGAR: Bs " +
-        precioBolivianos(total) + "*\n\n" +
-        "📲 Quiero coordinar el pago y confirmar mi pedido.\n\n" +
-        "Gracias por elegir *K CENTER* 💡";
+        "\nTOTAL: Bs " + precioBolivianos(total) +
+        "\n\nQuiero coordinar el pago y confirmar mi pedido.";
 
-    // Crear enlace directo de WhatsApp
     const enlace =
         "https://wa.me/" + numeroWhatsApp +
         "?text=" + encodeURIComponent(mensaje);
 
-    // Abrir WhatsApp
-    const ventana = window.open(enlace, "_blank");
-
-    // Alternativa si el navegador bloquea la ventana
-    if (!ventana) {
-        window.location.href = enlace;
-    }
+    window.open(enlace, "_blank");
 }
 
-            alert(
-                "¡Gracias por elegir K Center!\n\n" +
-                "Resumen de tu pedido:\n" +
-                detalle +
-                "\n\nTotal: Bs " + precioBolivianos(total) +
-                "\n\nEsta es una demostración de compra. " +
-                "No se ha realizado ningún pago real."
-            );
+document.getElementById("anio").textContent =
+    new Date().getFullYear();
 
-            carrito = [];
-            actualizarCarrito();
-            mostrarCarrito(false);
-        
+actualizarCarrito();
 
-        document.getElementById("anio").textContent =
-            new Date().getFullYear();
-
-        actualizarCarrito();
     </script>
 
 </body>
