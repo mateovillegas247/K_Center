@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101820">
+    <meta name="description" content="K Center: iluminación LED industrial, eficiencia energética y tecnología inteligente.">
+    <title>K Center | Foco Industrial Inteligente</title>
+
+    <style>
+        :root {
+            --fondo: #101820;
+            --oscuro: #080d12;
+            --tarjeta: #17232e;
+            --amarillo: #ffb703;
+            --naranja: #fb8500;
+            --blanco: #ffffff;
+            --gris: #c4cbd2;
+            --borde: #2b3d4d;
+            --radio: 20px;
+            --sombra: 0 15px 40px rgba(0,0,0,.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--fondo);
+            color: var(--blanco);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .contenedor {
+            width: min(1120px, 92%);
+            margin: auto;
+        }
+
+        .seccion {
+            padding: 80px 0;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            color: var(--amarillo);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .titulo-seccion {
+            color: var(--amarillo);
+            font-size: clamp(27px, 4vw, 39px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .subtitulo {
+            color: var(--gris);
+            max-width: 720px;
+            margin-bottom: 32px;
+        }
+
+        .resaltado {
+            color: var(--naranja);
+        }
+
+        /* ENCABEZADO */
+
+        header {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 65px 20px;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(255,255,255,.25), transparent 30%),
+                linear-gradient(135deg, var(--amarillo), var(--naranja));
+            color: var(--fondo);
+        }
+
+        header::before,
+        header::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            border: 1px solid rgba(16,24,32,.16);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        header::before {
+            width: 380px;
+            height: 380px;
+            top: -220px;
+            left: -100px;
+        }
+
+        header::after {
+            width: 500px;
+            height: 500px;
+            right: -180px;
+            bottom: -350px;
+        }
+
+        .cabecera-contenido {
+            width: min(1120px, 100%);
+            margin: auto;
+        }
+
+        .cabecera-superior {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .cabecera-titulo {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .logo {
+            font-size: clamp(46px, 7vw, 82px);
+            line-height: 1.08;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 12px;
+        }
+
+        .lema {
+            font-size: clamp(18px, 3vw, 25px);
+            font-weight: 800;
+        }
+
+        .descripcion-header {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .contacto-cabecera {
+            flex: 0 1 330px;
+            padding: 22px;
+            background: rgba(255,255,255,.23);
+            border: 1px solid rgba(255,255,255,.45);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(70,40,0,.12);
+            overflow-wrap: anywhere;
+        }
+
+        .contacto-cabecera .contacto-etiqueta {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .contacto-numero {
+            display: inline-block;
+            font-size: clamp(25px, 3vw, 34px);
+            line-height: 1.3;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .contacto-cabecera p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        .botones-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .boton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 23px;
+            border-radius: 50px;
+            border: 2px solid transparent;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .25s, background .25s, color .25s;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            transform: translateY(-3px);
+        }
+
+        .boton-principal {
+            background: var(--fondo);
+            color: var(--amarillo);
+        }
+
+        .boton-principal:hover {
+            background: var(--oscuro);
+        }
+
+        .boton-secundario {
+            border-color: var(--fondo);
+            color: var(--fondo);
+        }
+
+        .boton-secundario:hover {
+            background: var(--fondo);
+            color: var(--amarillo);
+        }
+
+        /* INFORMACIÓN DE CONTACTO */
+
+        .informacion {
+            background: #0b1219;
+            border-bottom: 1px solid var(--borde);
+        }
+
+        .informacion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            padding-top: 22px;
+            padding-bottom: 22px;
+        }
+
+        .informacion-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 17px;
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 14px;
+            min-width: 0;
+        }
+
+        .informacion-icono {
+            font-size: 25px;
+            line-height: 1.4;
+        }
+
+        .informacion-item strong {
+            display: block;
+            color: var(--amarillo);
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .informacion-item p,
+        .informacion-item a {
+            color: var(--gris);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .informacion-item a {
+            text-decoration: none;
+        }
+
+        .informacion-item a:hover {
+            color: var(--amarillo);
+        }
+
+        /* NAVEGACIÓN */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8,13,18,.96);
+            border-bottom: 1px solid var(--borde);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-contenido {
+            width: min(1120px, 94%);
+            min-height: 68px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-logo {
+            color: var(--amarillo);
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .nav-enlaces {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px 23px;
+        }
+
+        .nav-enlaces a {
+            color: #e9edf0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: color .2s;
+        }
+
+        .nav-enlaces a:hover {
+            color: var(--amarillo);
+        }
+
+        /* PROYECTO */
+
+        .problema {
+            padding: 32px;
+            background: linear-gradient(135deg, var(--tarjeta), #121d27);
+            border: 1px solid var(--borde);
+            border-left: 5px solid var(--amarillo);
+            border-radius: var(--radio);
+            box-shadow: var(--sombra);
+        }
+
+        .problema p {
+            color: #e0e5e9;
+            font-size: 16px;
+        }
+
+        .datos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .dato {
+            padding: 21px;
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: 15px;
+        }
+
+        .dato strong {
+            display: block;
+            color: var(--amarillo);
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+
+        .dato span {
+            color: var(--gris);
+            font-size: 14px;
+        }
+
+        /* INNOVACIÓN */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            padding: 28px;
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: var(--radio);
+            transition: transform .3s, border-color .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--amarillo);
+        }
+
+        .icono {
+            width: 54px;
+            height: 54px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 18px;
+            background: rgba(255,183,3,.12);
+            border: 1px solid rgba(255,183,3,.3);
+            border-radius: 15px;
+            color: var(--amarillo);
+            font-size: 27px;
+        }
+
+        .card h3 {
+            color: var(--amarillo);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--gris);
+            font-size: 15px;
+        }
+
+        /* PRODUCTOS */
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 22px;
+        }
+
+        .producto {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 25px 22px;
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: var(--radio);
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-6px);
+            border-color: var(--amarillo);
+            box-shadow: var(--sombra);
+        }
+
+        .producto-icono {
+            display: grid;
+            place-items: center;
+            height: 100px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255,183,3,.15), rgba(251,133,0,.08));
+            font-size: 44px;
+        }
+
+        .producto h3 {
+            color: var(--amarillo);
+            font-size: 19px;
+            line-height: 1.4;
+            margin-bottom: 13px;
+        }
+
+        .producto ul {
+            list-style: none;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .producto li {
+            position: relative;
+            padding: 5px 0 5px 20px;
+            color: var(--gris);
+            font-size: 13px;
+        }
+
+        .producto li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--amarillo);
+            font-weight: 900;
+        }
+
+        .descripcion-producto {
+            color: var(--gris);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .precio {
+            color: var(--amarillo);
+            font-size: 30px;
+            font-weight: 900;
+            margin: 8px 0 20px;
+        }
+
+        .precio small {
+            color: var(--gris);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .boton-carrito {
+            width: 100%;
+            border: none;
+            background: var(--amarillo);
+            color: var(--fondo);
+            padding: 13px 15px;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .boton-carrito:hover {
+            background: var(--naranja);
+            color: var(--blanco);
+        }
+
+        /* COMPETENCIA */
+
+        .competencia {
+            padding: 32px;
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: var(--radio);
+            box-shadow: var(--sombra);
+        }
+
+        .competencia p {
+            color: #d5dce2;
+            margin-bottom: 16px;
+        }
+
+        .competencia p:last-child {
+            margin-bottom: 0;
+        }
+
+        .competencia strong {
+            color: var(--amarillo);
+        }
+
+        /* GALERÍA */
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .imagen {
+            overflow: hidden;
+            background: var(--tarjeta);
+            border: 1px solid var(--borde);
+            border-radius: var(--radio);
+            transition: border-color .3s, transform .3s;
+        }
+
+        .imagen:hover {
+            transform: translateY(-5px);
+            border-color: var(--amarillo);
+        }
+
+        .imagen img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: contain;
+            background: #111820;
+            transition: transform .4s;
+        }
+
+        .imagen:hover img {
+            transform: scale(1.035);
+        }
+
+        .imagen figcaption {
+            padding: 15px;
+            color: var(--amarillo);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* OBJETIVO */
+
+        .objetivo {
+            padding: 45px 30px;
+            text-align: center;
+            border: 1px solid rgba(255,183,3,.35);
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--tarjeta), #101820);
+            box-shadow: var(--sombra);
+        }
+
+        .objetivo p {
+            max-width: 750px;
+            margin: auto;
+            color: #d5dce2;
+            font-size: 16px;
+        }
+
+        .objetivo .boton {
+            margin-top: 24px;
+        }
+
+        /* CARRITO */
+
+        .carrito {
+            position: fixed;
+            top: 85px;
+            right: 20px;
+            width: 360px;
+            max-width: calc(100% - 30px);
+            max-height: calc(100dvh - 110px);
+            overflow-y: auto;
+            padding: 23px;
+            background: var(--oscuro);
+            border: 1px solid var(--amarillo);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.55);
+            z-index: 2000;
+            display: none;
+        }
+
+        .carrito.activo {
+            display: block;
+            animation: aparecer .25s ease;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .carrito-encabezado {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .carrito h2 {
+            color: var(--amarillo);
+            font-size: 21px;
+        }
+
+        .cerrar-carrito {
+            border: none;
+            background: transparent;
+            color: var(--gris);
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+        #listaCarrito {
+            list-style: none;
+        }
+
+        #listaCarrito li {
+            padding: 13px 0;
+            border-bottom: 1px solid var(--borde);
+            font-size: 14px;
+        }
+
+        .item-carrito {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .item-nombre {
+            overflow-wrap: anywhere;
+        }
+
+        .item-precio {
+            display: block;
+            color: var(--amarillo);
+            margin-top: 3px;
+        }
+
+        .eliminar {
+            flex-shrink: 0;
+            border: none;
+            background: #d62828;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .carrito-vacio {
+            color: var(--gris);
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 21px;
+            font-weight: 900;
+            color: var(--amarillo);
+        }
+
+        .comprar {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    background: #25D366;
+    color: #ffffff;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.comprar:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+.nota-pago {
+    color: var(--gris);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 12px;
+}
+
+        .comprar:hover {
+            background: var(--naranja);
+            color: white;
+        }
+
+        #btnCarrito {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--amarillo);
+            color: var(--fondo);
+            border: none;
+            border-radius: 50px;
+            padding: 13px 20px;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 1500;
+            box-shadow: 0 8px 25px rgba(0,0,0,.35);
+            transition: transform .25s, background .25s;
+        }
+
+        #btnCarrito:hover {
+            background: var(--naranja);
+            transform: translateY(-3px);
+        }
+
+        #contadorCarrito {
+            display: grid;
+            place-items: center;
+            min-width: 25px;
+            height: 25px;
+            padding: 0 6px;
+            border-radius: 50px;
+            background: #d62828;
+            color: white;
+            font-size: 12px;
+        }
+
+        /* PIE DE PÁGINA */
+
+        footer {
+            padding: 35px 20px;
+            text-align: center;
+            background: var(--oscuro);
+            border-top: 1px solid var(--borde);
+        }
+
+        .footer-logo {
+            color: var(--amarillo);
+            font-size: 25px;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        footer p {
+            color: #aab3bc;
+            font-size: 13px;
+        }
+
+        .footer-copy {
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        /* TABLETS */
+
+        @media (max-width: 900px) {
+            .cabecera-superior {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .contacto-cabecera {
+                width: 100%;
+                max-width: 500px;
+                flex-basis: auto;
+            }
+
+            .informacion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-contenido {
+                flex-direction: column;
+                justify-content: center;
+                padding: 12px 0;
+                gap: 10px;
+            }
+
+            .nav-enlaces {
+                justify-content: center;
+            }
+
+            .productos {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .galeria {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* CELULARES */
+
+        @media (max-width: 600px) {
+            .seccion {
+                padding: 55px 0;
+            }
+
+            header {
+                padding: 48px 18px;
+            }
+
+            .logo {
+                letter-spacing: -2px;
+            }
+
+            .contacto-cabecera {
+                padding: 18px;
+            }
+
+            .botones-header {
+                flex-direction: column;
+            }
+
+            .botones-header .boton {
+                width: 100%;
+            }
+
+            .nav-enlaces {
+                gap: 8px 13px;
+            }
+
+            .nav-enlaces a {
+                font-size: 12px;
+            }
+
+            .cards,
+            .productos,
+            .galeria,
+            .datos {
+                grid-template-columns: 1fr;
+            }
+
+            .problema,
+            .competencia {
+                padding: 23px;
+            }
+
+            .objetivo {
+                padding: 33px 20px;
+            }
+
+            .imagen img {
+                aspect-ratio: 4 / 3;
+            }
+
+            .carrito {
+                top: 12px;
+                right: 12px;
+                max-width: calc(100% - 24px);
+                max-height: calc(100dvh - 95px);
+            }
+
+            #btnCarrito {
+                right: 14px;
+                bottom: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CARRITO -->
+
+    <!-- CARRITO -->
+
+<aside class="carrito" id="carrito"
+       aria-label="Carrito de compras" aria-hidden="true">
+
+    <div class="carrito-encabezado">
+        <h2>🛒 Tu carrito</h2>
+        <button class="cerrar-carrito" type="button"
+                onclick="mostrarCarrito(false)"
+                aria-label="Cerrar carrito">×</button>
+    </div>
+
+    <ul id="listaCarrito" aria-live="polite">
+        <li class="carrito-vacio">Tu carrito está vacío.</li>
+    </ul>
+
+    <p class="total">Total: Bs <span id="total">0</span></p>
+
+    <button class="comprar" type="button" onclick="comprar()">
+        📲 Pagar por WhatsApp
+    </button>
+
+    <p class="nota-pago">
+        Se abrirá WhatsApp con el detalle de tu pedido para coordinar
+        el pago y confirmar tu compra.
+    </p>
+</aside>
+
+    <button id="btnCarrito" type="button"
+            onclick="mostrarCarrito()"
+            aria-controls="carrito" aria-expanded="false">
+        🛒 Carrito <span id="contadorCarrito">0</span>
+    </button>
+
+    <!-- ENCABEZADO -->
+
+    <header id="inicio">
+        <div class="cabecera-contenido">
+            <p class="etiqueta" style="color:#101820">
+                Innovación · Tecnología · Eficiencia
+            </p>
+
+            <div class="cabecera-superior">
+                <div class="cabecera-titulo">
+                    <h1 class="logo">K Center</h1>
+                    <p class="lema">Foco Industrial Inteligente</p>
+                    <p class="descripcion-header">
+                        Más luz, menos consumo, mayor seguridad.
+                    </p>
+                </div>
+
+            <div class="botones-header">
+                <a href="#productos" class="boton boton-principal">
+                    Ver productos →
+                </a>
+                <a href="#proyecto" class="boton boton-secundario">
+                    Conocer el proyecto
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- INFORMACIÓN DE CONTACTO -->
+
+    <section class="informacion" aria-label="Información de contacto">
+        <div class="contenedor informacion-grid">
+
+            <div class="informacion-item">
+                <span class="informacion-icono" aria-hidden="true">📱</span>
+                <div>
+                    <strong>WhatsApp</strong>
+                    <a href="https://wa.me/59173655491"
+                       target="_blank" rel="noopener noreferrer">
+                        73655491 · Escríbenos
+                    </a>
+                </div>
+            </div>
+
+            <div class="informacion-item">
+                <span class="informacion-icono" aria-hidden="true">🕘</span>
+                <div>
+                    <strong>Horario de atención</strong>
+                    <p>09:00 a 18:00</p>
+                </div>
+            </div>
+
+            <div class="informacion-item">
+                <span class="informacion-icono" aria-hidden="true">📍</span>
+                <div>
+                    <strong>Nuestra ubicación</strong>
+                    <p>Av. Santa Cruz 340, entre Bahía y Arenales</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NAVEGACIÓN -->
+
+    <nav aria-label="Navegación principal">
+        <div class="nav-contenido">
+            <a href="#inicio" class="nav-logo">K CENTER</a>
+
+            <div class="nav-enlaces">
+                <a href="#proyecto">Proyecto</a>
+                <a href="#innovacion">Innovación</a>
+                <a href="#productos">Productos</a>
+                <a href="#competencia">Competencia</a>
+                <a href="#galeria">Galería</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!-- PROYECTO -->
+
+        <section class="seccion" id="proyecto">
+            <div class="contenedor">
+                <span class="etiqueta">Quiénes somos</span>
+
+                <h2 class="titulo-seccion">
+                    ¿Qué es <span class="resaltado">K Center</span>?
+                </h2>
+
+                <p class="subtitulo">
+                    Una propuesta tecnológica enfocada en transformar
+                    la iluminación de los espacios industriales.
+                </p>
+
+                <div class="problema">
+                    <p>
+                        K Center es un proyecto de innovación tecnológica
+                        desarrollado para mejorar la iluminación de ambientes
+                        industriales. Nuestra propuesta combina iluminación
+                        LED eficiente con funciones inteligentes que buscan
+                        optimizar el uso de la luz, reducir el consumo
+                        energético y contribuir a la seguridad en los
+                        espacios de trabajo.
+                    </p>
+                </div>
+
+                <div class="datos">
+                    <div class="dato">
+                        <strong>Iluminación LED</strong>
+                        <span>Eficiencia y rendimiento lumínico.</span>
+                    </div>
+
+                    <div class="dato">
+                        <strong>Tecnología inteligente</strong>
+                        <span>Una propuesta orientada a la innovación.</span>
+                    </div>
+
+                    <div class="dato">
+                        <strong>Ahorro energético</strong>
+                        <span>Uso más eficiente de la electricidad.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INNOVACIÓN: SE ELIMINÓ EL CONTROL DE TEMPERATURA -->
+
+        <section class="seccion" id="innovacion">
+            <div class="contenedor">
+                <span class="etiqueta">Nuestra propuesta</span>
+
+                <h2 class="titulo-seccion">
+                    ¿Dónde está la innovación?
+                </h2>
+
+                <p class="subtitulo">
+                    Tecnología y eficiencia para responder a las necesidades
+                    de los ambientes industriales.
+                </p>
+
+                <div class="cards">
+                    <article class="card">
+                        <div class="icono" aria-hidden="true">💡</div>
+                        <h3>LED eficiente</h3>
+                        <p>
+                            Proporciona iluminación adecuada mediante
+                            tecnología LED de bajo consumo, ideal para
+                            espacios que requieren buena visibilidad.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="icono" aria-hidden="true">⚡</div>
+                        <h3>Ahorro energético</h3>
+                        <p>
+                            Busca reducir el funcionamiento innecesario
+                            de la iluminación y favorecer un uso más
+                            responsable de la energía.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTOS -->
+
+        <section class="seccion" id="productos">
+            <div class="contenedor">
+                <span class="etiqueta">Catálogo K Center</span>
+
+                <h2 class="titulo-seccion">
+                    Productos y <span class="resaltado">precios</span>
+                </h2>
+
+                <p class="subtitulo">
+                    Soluciones de iluminación para espacios industriales,
+                    comerciales y áreas exteriores.
+                </p>
+
+                <div class="productos">
+
+                    <article class="producto">
+                        <div class="producto-icono" aria-hidden="true">💡</div>
+                        <h3>Foco LED industrial</h3>
+
+                        <ul>
+                            <li>Iluminación de alta luminosidad</li>
+                            <li>Temperatura de color de 6000 K</li>
+                            <li>Rosca E27</li>
+                            <li>Vida útil indicada: 20.000 horas</li>
+                            <li>Diseñado para un consumo eficiente</li>
+                        </ul>
+
+                        <p class="descripcion-producto">
+                            Ideal para talleres, depósitos, tiendas
+                            y espacios de trabajo.
+                        </p>
+
+                        <div class="precio">Bs 140 <small>/ unidad</small></div>
+
+                        <button class="boton-carrito" type="button"
+                                onclick="agregarCarrito('Foco LED industrial', 140)">
+                            + Agregar al carrito
+                        </button>
+                    </article>
+
+                    <article class="producto">
+                        <div class="producto-icono" aria-hidden="true">🌳</div>
+                        <h3>Luminaria LED para jardín y parque</h3>
+
+                        <ul>
+                            <li>Potencia indicada: 100 W</li>
+                            <li>Protección IP65 indicada</li>
+                            <li>Alta luminosidad</li>
+                            <li>Bajo consumo energético</li>
+                            <li>Diseñada para áreas exteriores</li>
+                        </ul>
+
+                        <p class="descripcion-producto">
+                            Una alternativa para jardines, parques
+                            y espacios exteriores.
+                        </p>
+
+                        <div class="precio">Bs 950 <small>/ unidad</small></div>
+
+                        <button class="boton-carrito" type="button"
+                                onclick="agregarCarrito('Luminaria LED para jardín y parque', 950)">
+                            + Agregar al carrito
+                        </button>
+                    </article>
+
+                    <article class="producto">
+                        <div class="producto-icono" aria-hidden="true">🚨</div>
+                        <h3>Señalizador autónomo permanente</h3>
+
+                        <ul>
+                            <li>Alimentación: 220 V, 50/60 Hz</li>
+                            <li>Potencia indicada: 2,1 W</li>
+                            <li>Corriente indicada: 0,02 A</li>
+                            <li>5 LED</li>
+                            <li>Modelo: 2912</li>
+                        </ul>
+
+                        <p class="descripcion-producto">
+                            Señalizador luminoso para apoyar la orientación
+                            y la señalización de espacios.
+                        </p>
+
+                        <div class="precio">Bs 250 <small>/ unidad</small></div>
+
+                        <button class="boton-carrito" type="button"
+                                onclick="agregarCarrito('Señalizador autónomo permanente', 250)">
+                            + Agregar al carrito
+                        </button>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPETENCIA -->
+
+        <section class="seccion" id="competencia">
+            <div class="contenedor">
+                <span class="etiqueta">Análisis de mercado</span>
+
+                <h2 class="titulo-seccion">Competencia en Santa Cruz</h2>
+
+                <div class="competencia">
+                    <p>
+                        En Santa Cruz existe una oferta importante de
+                        iluminación LED industrial. Empresas como
+                        <strong>DESMART, CLEMCORP y Electro Energía</strong>
+                        ofrecen luminarias y soluciones para diferentes
+                        tipos de instalaciones.
+                    </p>
+
+                    <p>
+                        Nuestra propuesta busca diferenciarse mediante
+                        la combinación de iluminación LED, ahorro energético
+                        y tecnología inteligente en un solo producto.
+                    </p>
+
+                    <p>
+                        De esta manera, K Center no busca competir únicamente
+                        por precio, sino por innovación, eficiencia y
+                        adaptación a las necesidades de una instalación
+                        industrial.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA -->
+
+        <section class="seccion" id="galeria">
+            <div class="contenedor">
+                <span class="etiqueta">Conoce nuestros equipos</span>
+
+                <h2 class="titulo-seccion">Galería del proyecto</h2>
+
+                <p class="subtitulo">
+                    Una presentación visual de los productos que forman
+                    parte de nuestra propuesta.
+                </p>
+
+                <div class="galeria">
+
+                    <figure class="imagen">
+                        <img
+                            src="señalizador autonomo.jpg"
+                            alt="Señalizador autónomo permanente"
+                            loading="lazy"
+                        >
+                        <figcaption>Señalizador autónomo</figcaption>
+                    </figure>
+
+                    <figure class="imagen">
+                        <img
+                            src="luminaria led.jpg"
+                            alt="Luminaria LED para exteriores"
+                            loading="lazy"
+                        >
+                        <figcaption>Luminaria LED</figcaption>
+                    </figure>
+
+                    <figure class="imagen">
+                        <img
+                            src="Foco industrial.jpg"
+                            alt="Foco LED industrial K Center"
+                            loading="lazy"
+                        >
+                        <figcaption>Foco industrial inteligente</figcaption>
+                    </figure>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- OBJETIVO -->
+
+        <section class="seccion">
+            <div class="contenedor">
+                <div class="objetivo">
+                    <span class="etiqueta">Nuestra meta</span>
+
+                    <h2 class="titulo-seccion">
+                        Iluminar el futuro con inteligencia
+                    </h2>
+
+                    <p>
+                        Diseñar una solución de iluminación industrial
+                        inteligente que permita mejorar la iluminación,
+                        reducir el consumo energético y aumentar la
+                        seguridad de los espacios de trabajo.
+                    </p>
+
+                    <a href="#productos" class="boton boton-principal">
+                        Explorar productos →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+
+        <section class="seccion" id="contacto">
+            <div class="contenedor">
+                <div class="objetivo">
+                    <span class="etiqueta">Estamos para ayudarte</span>
+
+                    <h2 class="titulo-seccion">
+                        ¿Necesitas más información?
+                    </h2>
+
+                    <p>
+                        Contáctanos a este número para más información
+                        sobre nuestros productos y soluciones de iluminación.
+                    </p>
+
+                    <a class="boton boton-principal"
+                       href="https://wa.me/59173655491"
+                       target="_blank" rel="noopener noreferrer">
+                        📲 WhatsApp: 73655491
+                    </a>
+
+                    <p style="margin-top:20px">
+                        🕘 Atención: 09:00 a 18:00<br>
+                        📍 Av. Santa Cruz 340, entre Bahía y Arenales
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+
+    <footer>
+        <div class="footer-logo">K Center</div>
+        <p>Proyecto de Innovación BTH</p>
+        <p>Santa Cruz de la Sierra, Bolivia</p>
+        <p>WhatsApp: 73655491 · Atención: 09:00 a 18:00</p>
+        <p>Av. Santa Cruz 340, entre Bahía y Arenales</p>
+
+        <p class="footer-copy">
+            © <span id="anio"></span> K Center.
+            Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <!-- FUNCIONALIDAD DEL CARRITO -->
+
+    <script>
+        "use strict";
+
+        let carrito = [];
+
+        const formatoPrecio = new Intl.NumberFormat("es-BO", {
+            maximumFractionDigits: 0
+        });
+
+        function precioBolivianos(precio) {
+            return formatoPrecio.format(precio);
+        }
+
+        function agregarCarrito(nombre, precio) {
+            carrito.push({
+                id: Date.now() + Math.random(),
+                nombre: nombre,
+                precio: precio
+            });
+
+            actualizarCarrito();
+
+            const boton = document.getElementById("btnCarrito");
+
+            boton.setAttribute(
+                "aria-label",
+                "Abrir carrito con " + carrito.length + " productos"
+            );
+
+            boton.title = nombre + " agregado al carrito";
+        }
+
+        function actualizarCarrito() {
+            const lista = document.getElementById("listaCarrito");
+            const totalHTML = document.getElementById("total");
+            const contador = document.getElementById("contadorCarrito");
+
+            lista.replaceChildren();
+
+            if (carrito.length === 0) {
+                const vacio = document.createElement("li");
+                vacio.className = "carrito-vacio";
+                vacio.textContent = "Tu carrito está vacío.";
+                lista.appendChild(vacio);
+            }
+
+            carrito.forEach(function(producto) {
+                const item = document.createElement("li");
+                const contenido = document.createElement("div");
+                const nombre = document.createElement("span");
+                const precio = document.createElement("span");
+                const eliminar = document.createElement("button");
+                const detalles = document.createElement("div");
+
+                contenido.className = "item-carrito";
+                nombre.className = "item-nombre";
+                nombre.textContent = producto.nombre;
+
+                precio.className = "item-precio";
+                precio.textContent =
+                    "Bs " + precioBolivianos(producto.precio);
+
+                eliminar.className = "eliminar";
+                eliminar.type = "button";
+                eliminar.textContent = "Quitar";
+                eliminar.setAttribute(
+                    "aria-label",
+                    "Eliminar " + producto.nombre
+                );
+
+                eliminar.addEventListener("click", function() {
+                    eliminarProducto(producto.id);
+                });
+
+                detalles.append(nombre, precio);
+                contenido.append(detalles, eliminar);
+                item.appendChild(contenido);
+                lista.appendChild(item);
+            });
+
+            const total = carrito.reduce(function(suma, producto) {
+                return suma + producto.precio;
+            }, 0);
+
+            totalHTML.textContent = precioBolivianos(total);
+            contador.textContent = carrito.length;
+        }
+
+        function eliminarProducto(id) {
+            carrito = carrito.filter(function(producto) {
+                return producto.id !== id;
+            });
+
+            actualizarCarrito();
+        }
+
+        function mostrarCarrito(forzarEstado) {
+            const elemento = document.getElementById("carrito");
+            const boton = document.getElementById("btnCarrito");
+
+            const mostrar = typeof forzarEstado === "boolean"
+                ? forzarEstado
+                : !elemento.classList.contains("activo");
+
+            elemento.classList.toggle("activo", mostrar);
+            elemento.setAttribute("aria-hidden", String(!mostrar));
+            boton.setAttribute("aria-expanded", String(mostrar));
+        }
+
+        function comprar() {
+
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío. Agrega productos antes de continuar.");
+        return;
+    }
+
+    // Número de WhatsApp de K Center
+    const numeroWhatsApp = "59173655491";
+
+    // Agrupar productos repetidos
+    const productosAgrupados = {};
+
+    carrito.forEach(function(producto) {
+
+        if (!productosAgrupados[producto.nombre]) {
+            productosAgrupados[producto.nombre] = {
+                cantidad: 0,
+                precio: producto.precio
+            };
+        }
+
+        productosAgrupados[producto.nombre].cantidad++;
+    });
+
+    // Calcular el total
+    const total = carrito.reduce(function(suma, producto) {
+        return suma + producto.precio;
+    }, 0);
+
+    // Crear el detalle del pedido
+    let detalle = "";
+
+    Object.keys(productosAgrupados).forEach(function(nombre) {
+
+        const producto = productosAgrupados[nombre];
+
+        const subtotal = producto.cantidad * producto.precio;
+
+        detalle +=
+            "\n📦 " + nombre +
+            "\nCantidad: " + producto.cantidad +
+            "\nPrecio unitario: Bs " +
+            precioBolivianos(producto.precio) +
+            "\nSubtotal: Bs " +
+            precioBolivianos(subtotal) +
+            "\n";
+    });
+
+    // Mensaje automático para WhatsApp
+    const mensaje =
+        "🟡 *K CENTER - NUEVO PEDIDO* 🟡\n\n" +
+        "¡Hola! Quiero realizar una compra.\n\n" +
+        "🛒 *DETALLE DE MI PEDIDO*\n" +
+        "━━━━━━━━━━━━━━━━━━\n" +
+        detalle +
+        "━━━━━━━━━━━━━━━━━━\n" +
+        "💰 *TOTAL A PAGAR: Bs " +
+        precioBolivianos(total) + "*\n\n" +
+        "📲 Quiero coordinar el pago y confirmar mi pedido.\n\n" +
+        "Gracias por elegir *K CENTER* 💡";
+
+    // Crear enlace directo de WhatsApp
+    const enlace =
+        "https://wa.me/" + numeroWhatsApp +
+        "?text=" + encodeURIComponent(mensaje);
+
+    // Abrir WhatsApp
+    const ventana = window.open(enlace, "_blank");
+
+    // Alternativa si el navegador bloquea la ventana
+    if (!ventana) {
+        window.location.href = enlace;
+    }
+}
+
+            alert(
+                "¡Gracias por elegir K Center!\n\n" +
+                "Resumen de tu pedido:\n" +
+                detalle +
+                "\n\nTotal: Bs " + precioBolivianos(total) +
+                "\n\nEsta es una demostración de compra. " +
+                "No se ha realizado ningún pago real."
+            );
+
+            carrito = [];
+            actualizarCarrito();
+            mostrarCarrito(false);
+        
+
+        document.getElementById("anio").textContent =
+            new Date().getFullYear();
+
+        actualizarCarrito();
+    </script>
+
+</body>
+</html>
